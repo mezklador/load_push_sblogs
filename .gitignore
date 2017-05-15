@@ -99,3 +99,4 @@ ENV/
 
 apilogs/*
 logs/*
+s3config.py
