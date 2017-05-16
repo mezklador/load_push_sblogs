@@ -44,7 +44,6 @@ if __name__ == "__main__":
     for logfile in logfiles:
         file_to_upload = os.path.join(os.getcwd(), 'logs', logfile) 
         filename = file_to_upload.split('/')[-1]
-        #print(file_to_upload, filename)
         
         try:
             #FROM: http://stackoverflow.com/questions/42008288/upload-file-to-amazon-cloud-subfolder-using-python-boto3#answer-42008433

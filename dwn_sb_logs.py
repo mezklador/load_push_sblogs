@@ -38,7 +38,7 @@ if __name__ == '__main__':
 
         now = datetime.now()
 
-        filename_date = f"{now.year}{now.month}{now.day}-{now.hour}_{now.minute}_{now.second}.log"
+        filename_date = f"{now.year:}{now.month:02d}{now.day:02d}-{now.hour:02d}_{now.minute:02d}_{now.second:02d}.log"
 
         with open(os.path.join(logs_dir, filename_date), 'wb') as f:
             for data in tqdm(r.iter_content(32*1024),
