@@ -36,12 +36,11 @@ if __name__ == "__main__":
         print(k['Key'])
     '''
     
-    start = time()
-
     # list all files in logs directory
     logfiles = os.listdir('logs')
 
     for logfile in logfiles:
+        start = time()
         file_to_upload = os.path.join(os.getcwd(), 'logs', logfile) 
         filename = file_to_upload.split('/')[-1]
         
