@@ -34,10 +34,22 @@ if __name__ == '__main__':
 python dwn_sb_logs.py
 ```
 
+*This script create automatically a new directory called "logs" containing all
+distant log files, formatted by date (FR format) and time.
+It puts a new line in "apilogs/downloads/timeline.log", with 2 cases:
+INFO: everything works fine
+WARNING: something wrong with the GET request over http.*
+
 4- run aws.py script, to upload to your S3 instance:
 ```
 python aws.py
 ```
+
+*This script is uploading each file in "logs/" directory to AWS S3 bucket of
+choice.
+It puts also a new line in "apilogs/uploads/state_of_union.log", with 2 cases:
+INFO: everything is running well
+WARNING: no way to upload to AWS server, for any reason.*
 
 5- check success/error in logs:
 ```
