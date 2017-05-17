@@ -4,6 +4,7 @@ from datetime import datetime
 import logging
 import logging.config
 import os
+import re
 import sys
 from time import time
 
@@ -21,7 +22,7 @@ fh.setFormatter(formatter)
 logger.addHandler(fh)
 '''
 
-sb_logs_file = "http://soda-bar.fr/hide/loading_page.log"
+sb_logs_file = "http://soda-bar.com/hide/loading_page.log"
 
 if __name__ == '__main__':
     start = time()
@@ -34,6 +35,23 @@ if __name__ == '__main__':
     
     try:
         r = requests.get(sb_logs_file, stream=True)
+        '''
+        Check if status code if OK (200)
+        '''
+        if r.status_code != 200:
+            r.raise_for_status()
+
+        content_type = re.sub('[\s+]',
+                              '',
+                              r.headers['content-type']).split(';')[0]
+        
+        ''' Check if script is receiving the good data format
+        (in case of error in URL)
+         '''
+        if content_type != 'text/plain':
+            r.status_code = 500
+            r.raise_for_status()
+
         total_size = int(r.headers.get('content-length', 0))
 
         now = datetime.now()
